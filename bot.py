@@ -174,6 +174,24 @@ FIXED_THUMBNAIL_URL = "https://i.postimg.cc/DfLv5dJP/photo-2025-08-05-16-48-30.j
 START_PIC_URL = "https://imgs.search.brave.com/9n5_FAipMAH3ic1LtbHx3btylHNWppO2rl4gXnRjr1g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDE4MzM1/NTIuanBn"
 STICKER_ID = "CAACAgUAAyEFAASONkiwAAIqzmgkRV65h50_3UdyXQ4r0osj7Cs2AAIfAANDc8kSq8cUT3BtY9A2BA"
 
+def download_start_pic(url: str, save_path = THUMBNAIL_DIR / "start_pic.jpg"):
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        with open(save_path, "wb") as f:
+            f.write(response.content)
+        print(f"[INFO] Start pic downloaded and saved as '{save_path}'")
+        return str(save_path)
+    except Exception as e:
+        print(f"[ERROR] Failed to download start pic: {e}")
+        return None
+
+def download_start_pic_if_not_exists(url: str, save_path = THUMBNAIL_DIR / "start_pic.jpg"):
+    if save_path.exists():
+        print(f"[INFO] Start pic already exists at '{save_path}'")
+        return str(save_path)
+    return download_start_pic(url, save_path)
+
 class CodeflixBots:
     def __init__(self):
         self.client = AsyncIOMotorClient(MONGO_URI)
