@@ -3966,41 +3966,41 @@ async def start_handler(event):
 
     else:
         try:
-            start_pic_url = bot_settings.get("start_pic", START_PIC_URL)
-            
-            if is_admin(event.chat_id):
-                await client.send_file(
-                    event.chat_id,
-                    start_pic_url,
-                    caption=(
-                        f"<blockquote><b>🍁 Hᴇʏ, {mention}!</b></blockquote>\n"
-                        "<blockquote><b><i>I'ᴍ ᴀ ᴀᴜᴛᴏ ᴀɴɪᴍᴇ ʙᴏᴛ. ɪ ᴄᴀɴ ᴅᴏᴡɴʟᴏᴀᴅ ᴏɴɢᴏɪɴɢ ᴀɴᴅ ғɪɴɪsʜᴇᴅ ᴀɴɪᴍᴇ ғʀᴏᴍ ᴀɴɪᴍᴇᴘᴀʜᴇ.ʀᴜ ᴀɴᴅ ᴜᴘʟᴏᴀᴅ ᴛʜᴏsᴇ ғɪʟᴇs ᴏɴ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴅɪʀᴇᴄᴛʟʏ...</i></b>\n</blockquote>"
-                        "<blockquote><b>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - <a href='https://t.me/AnimesOngoing'>𝗢𝗻𝗴𝗼𝗶𝗻𝗴 𝗔𝗻𝗶𝗺𝗲- 𝗔𝗿𝗰</a></b></blockquote>"
-                    ),
-                    parse_mode='HTML',
-                    force_document=False,
-                    buttons=[
-                        [Button.inline("sᴇᴀʀᴄʜ ᴀɴɪᴍᴇ", b"search_anime"), Button.inline("ʜᴇʟᴘ", b"show_help")],
-                        [Button.inline("ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ sᴇᴛᴛɪɴɢs", b"auto_settings")]
-                    ]
-                )
+            start_pic_path = bot_settings.get("start_pic", None)
+            use_fallback = False
+
+            if start_pic_path and os.path.exists(start_pic_path):
+                start_media = start_pic_path
             else:
-                await client.send_file(
-                    event.chat_id,
-                    start_pic_url,
-                    caption=(
-                        f"<blockquote><b>🍁 Hᴇʏ, {mention}!</b></blockquote>n"
-                        "<blockquote><b><i>I'ᴍ ᴀ ᴀᴜᴛᴏ ᴀɴɪᴍᴇ ʙᴏᴛ. ɪ ᴄᴀɴ ᴅᴏᴡɴʟᴏᴀᴅ ᴏɴɢᴏɪɴɢ ᴀɴᴅ ғɪɴɪsʜᴇᴅ ᴀɴɪᴍᴇ ғʀᴏᴍ ᴀɴɪᴍᴇᴘᴀʜᴇ.ʀᴜ ᴀɴᴅ ᴜᴘʟᴏᴀᴅ ᴛʜᴏsᴇ ғɪʟᴇs ᴏɴ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴅɪʀᴇᴄᴛʟʏ...</i></b></blockquote>\n"
-                        "<blockquote><b>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - <a href='https://t.me/AnimesOngoing'>𝗢𝗻𝗴𝗼𝗶𝗻𝗴 𝗔𝗻𝗶𝗺𝗲- 𝗔𝗿𝗰</a></b></blockquote>"
-                    ),
-                    parse_mode='HTML',
-                    force_document=False,
-                    buttons=[
-                        [Button.url("Dᴇᴠᴇʟᴏᴘᴇʀ", "https://t.me/DARKXSIDE78"),
-                        Button.url("Mᴀɪɴ Cʜᴀɴɴᴇʟ", "https://t.me/ChibiHub")],
-                        [Button.url("Bᴀᴄᴋᴜᴘ Cʜᴀɴɴᴇʟ", "https://t.me/AnimesOngoing")]
-                    ]
-                )
+                start_media = START_PIC_URL
+                use_fallback = True
+
+            caption_text=(
+                f"<blockquote><b>🍁 Hᴇʏ, {mention}!</b></blockquote>\n"
+                "<blockquote><b><i>I'ᴍ ᴀ ᴀᴜᴛᴏ ᴀɴɪᴍᴇ ʙᴏᴛ. ɪ ᴄᴀɴ ᴅᴏᴡɴʟᴏᴀᴅ ᴏɴɢᴏɪɴɢ ᴀɴᴅ ғɪɴɪsʜᴇᴅ ᴀɴɪᴍᴇ ғʀᴏᴍ ᴀɴɪᴍᴇᴘᴀʜᴇ.ʀᴜ ᴀɴᴅ ᴜᴘʟᴏᴀᴅ ᴛʜᴏsᴇ ғɪʟᴇs ᴏɴ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴅɪʀᴇᴄᴛʟʏ...</i></b>\n</blockquote>"
+                "<blockquote><b>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - <a href='https://t.me/AnimesOngoing'>𝗢𝗻𝗴𝗼𝗶𝗻𝗴 𝗔𝗻𝗶𝗺𝗲- 𝗔𝗿𝗰</a></b></blockquote>"
+            )
+            
+             if is_admin(event.chat_id):
+                buttons = [
+                    [Button.inline("sᴇᴀʀᴄʜ ᴀɴɪᴍᴇ", b"search_anime"), Button.inline("ʜᴇʟᴘ", b"show_help")],
+                    [Button.inline("ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ sᴇᴛᴛɪɴɢs", b"auto_settings")]
+                ]
+            else:
+                buttons = [
+                    [Button.url("Dᴇᴠᴇʟᴏᴘᴇʀ", "https://t.me/DARKXSIDE78"),
+                     Button.url("Mᴀɪɴ Cʜᴀɴɴᴇʟ", "https://t.me/ChibiHub")],
+                    [Button.url("Bᴀᴄᴋᴜᴘ Cʜᴀɴɴᴇʟ", "https://t.me/AnimesOngoing")]
+                ]
+
+            await client.send_file(
+                event.chat_id,
+                start_media,
+                caption=caption_text,
+                parse_mode='HTML',
+                force_document=False,
+                buttons=buttons
+            )
                 
         except Exception as e:
             logger.error(f"Error sending start message: {e}")
@@ -4414,14 +4414,16 @@ async def set_start_pic(event):
         return
         
     try:
-        pic_path = await event.download_media(file=str(THUMBNAIL_DIR / "temp_start_pic"))
+        # Save permanently
+        save_path = THUMBNAIL_DIR / "start_pic.jpg"
+        pic_path = await event.download_media(file=str(save_path))
+        
         if os.path.exists(pic_path):
-            bot_settings.set("start_pic", pic_path)
+            bot_settings.set("start_pic", str(save_path))  # Save permanent path
             await safe_respond(event, "✅ <b>Start picture has been set successfully!</b>", parse_mode='html')
         else:
             await safe_respond(event, "❌ <b>Failed to set start picture.</b> <i>Please try again.</i>", parse_mode='html')
-        if os.path.exists(pic_path):
-            os.remove(pic_path)
+            
     except Exception as e:
         await safe_respond(event, f"❌ <b>Error setting start picture:</b> <i>{str(e)}</i>", parse_mode='html')
 
