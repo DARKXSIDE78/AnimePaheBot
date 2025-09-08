@@ -947,18 +947,12 @@ async def not_joined(client, event):
             
             caption_text = f"<blockquote><b>Jᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ(s) ᴛᴏ ᴜsᴇ ᴛʜɪs ʙᴏᴛ.</b></blockquote>"
             try:
-                force_pic_path = bot_settings.get("force_pic", None)
-                use_fallback = False
-                
-                if force_pic_path and os.path.exists(force_pic_path):
-                    force_media = force_pic_path
-                else:
-                    force_media = FORCE_PIC
-                    use_fallback = True
+                local_force_pic_path = download_force_pic_if_not_exists(FORCE_PIC)
+                force_pic_to_use = local_force_pic_path if local_force_pic_path else FORCE_PIC
                     
                 await client.send_file(
                     event.chat_id,
-                    force_media,
+                    force_pic_to_use,
                     caption=caption_text,
                     parse_mode='HTML',
                     buttons=buttons,
