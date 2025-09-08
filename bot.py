@@ -944,6 +944,12 @@ async def not_joined(client, event):
             
             caption_text = f"<blockquote><b>Jᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ(s) ᴛᴏ ᴜsᴇ ᴛʜɪs ʙᴏᴛ.</b></blockquote>"
             try:
+                if force_pic_path and os.path.exists(force_pic_path):
+                    force_media = force_pic_path
+                else:
+                    force_media = FORCE_PIC
+                    use_fallback = True
+                    
                 await client.send_file(
                     event.chat_id,
                     force_pic_path,
