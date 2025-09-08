@@ -944,7 +944,7 @@ async def not_joined(client, event):
             
             caption_text = f"<blockquote><b>Jᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ(s) ᴛᴏ ᴜsᴇ ᴛʜɪs ʙᴏᴛ.</b></blockquote>"
             try:
-                start_pic_path = bot_settings.get("start_pic", None)
+                force_pic_path = bot_settings.get("force_pic_path", None)
                 use_fallback = False
                 
                 if force_pic_path and os.path.exists(force_pic_path):
