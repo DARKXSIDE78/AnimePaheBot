@@ -5818,8 +5818,6 @@ async def health_check():
 async def main():
     try:
         start_pic_path = download_start_pic_if_not_exists(START_PIC_URL)
-        if start_pic_path:
-            bot_settings["start_pic"] = start_pic_path
         server = uvicorn.Server(uvicorn.Config(app, host="0.0.0.0", port=PORT, log_level="info"))
         asyncio.create_task(server.serve())
         
