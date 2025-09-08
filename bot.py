@@ -3985,11 +3985,11 @@ async def start_handler(event):
                 "<blockquote><b>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - <a href='https://t.me/AnimesOngoing'>𝗢𝗻𝗴𝗼𝗶𝗻𝗴 𝗔𝗻𝗶𝗺𝗲- 𝗔𝗿𝗰</a></b></blockquote>"
             )
             
-             if is_admin(event.chat_id):
-                buttons = [
-                    [Button.inline("sᴇᴀʀᴄʜ ᴀɴɪᴍᴇ", b"search_anime"), Button.inline("ʜᴇʟᴘ", b"show_help")],
-                    [Button.inline("ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ sᴇᴛᴛɪɴɢs", b"auto_settings")]
-                ]
+            if is_admin(event.chat_id):
+                    buttons = [
+                        [Button.inline("sᴇᴀʀᴄʜ ᴀɴɪᴍᴇ", b"search_anime"), Button.inline("ʜᴇʟᴘ", b"show_help")],
+                        [Button.inline("ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ sᴇᴛᴛɪɴɢs", b"auto_settings")]
+                    ]
             else:
                 buttons = [
                     [Button.url("Dᴇᴠᴇʟᴏᴘᴇʀ", "https://t.me/DARKXSIDE78"),
