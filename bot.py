@@ -44,6 +44,8 @@ import base64
 import shutil
 from telethon import types
 from pathlib import Path
+from telethon.tl.types import InputPhoto
+from telethon.tl.functions.photos import UploadProfilePhotoRequest
 
 THUMBNAIL_DIR = Path("./thumbnails")
 THUMBNAIL_DIR.mkdir(parents=True, exist_ok=True)
@@ -956,10 +958,10 @@ async def not_joined(client, event):
                 await client.send_file(
                     event.chat_id,
                     force_media,
-                    force_document=False,
                     caption=caption_text,
                     parse_mode='html',
-                    buttons=buttons
+                    buttons=buttons,
+                    force_document=False
                 )
                 logger.debug("Force-subscribe message sent successfully using send_file.")
             except WebpageMediaEmptyError as wme:
