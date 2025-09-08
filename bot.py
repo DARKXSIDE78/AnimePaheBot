@@ -5517,7 +5517,7 @@ async def download_episode(event, anime_title, anime_session, episode_number, ep
     base_name = format_filename(anime_title, episode_number, resolution, type_str)
     # Get main channel username for caption
     main_channel_username = CHANNEL_USERNAME if CHANNEL_USERNAME else BOT_USERNAME
-    full_caption = f"{base_name} @{main_channel_username}"
+    full_caption = f"{base_name} {main_channel_username}"
     filename = sanitize_filename(full_caption) + ".mkv"
     download_path = os.path.join(DOWNLOAD_DIR, filename)
     
