@@ -175,7 +175,7 @@ if not DUMP_CHANNEL_ID and not DUMP_CHANNEL_USERNAME:
 FIXED_THUMBNAIL_URL = "https://i.postimg.cc/DfLv5dJP/photo-2025-08-05-16-48-30.jpg"
 START_PIC_URL = "https://imgs.search.brave.com/9n5_FAipMAH3ic1LtbHx3btylHNWppO2rl4gXnRjr1g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDE4MzM1/NTIuanBn"
 STICKER_ID = "CAACAgUAAyEFAASONkiwAAIqzmgkRV65h50_3UdyXQ4r0osj7Cs2AAIfAANDc8kSq8cUT3BtY9A2BA"
-FORCE_PIC = "https://imgs.search.brave.com/251VkzPIZrlvS1S8Z9Py6nTUSmF0YOANsC0BKOiBtfk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjZy5jb20v/bWVkaWEvdHNfb3Jp/Zy8xMjExMC53ZWJw"
+FORCE_PIC = "https://imgs.search.brave.com/9n5_FAipMAH3ic1LtbHx3btylHNWppO2rl4gXnRjr1g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDE4MzM1/NTIuanBn"
 
 def download_start_pic(url: str, save_path = THUMBNAIL_DIR / "start_pic.jpg"):
     try:
@@ -959,10 +959,11 @@ async def not_joined(client, event):
                     event.chat_id,
                     force_media,
                     caption=caption_text,
-                    parse_mode='html',
+                    parse_mode='HTML',
                     buttons=buttons,
                     force_document=False
                 )
+                
                 logger.debug("Force-subscribe message sent successfully using send_file.")
             except WebpageMediaEmptyError as wme:
                 logger.warning(f"Force pic invalid or no media found: {wme}")
@@ -4053,7 +4054,8 @@ async def start_handler(event):
                 force_document=False,
                 buttons=buttons
             )
-                
+
+        
         except Exception as e:
             logger.error(f"Error sending start message: {e}")
             if is_admin(event.chat_id):
