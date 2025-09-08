@@ -955,7 +955,7 @@ async def not_joined(client, event):
                     
                 await client.send_file(
                     event.chat_id,
-                    force_pic_path,
+                    force_media,
                     force_document=False,
                     caption=caption_text,
                     parse_mode='html',
