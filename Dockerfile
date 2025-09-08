@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-# Install system dependencies as root
+# Install system dependencies
 USER root
 RUN apt-get update && apt-get install -y \
     ffmpeg \
@@ -8,26 +8,28 @@ RUN apt-get update && apt-get install -y \
     aria2 \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy requirements first for better caching
+# Copy only requirements first to leverage Docker layer caching
 COPY requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
+# Copy the full application code
 COPY . .
 
-# Create a non-root user for security
+# Create a non-root user and switch to it for security
 RUN useradd -m appuser && chown -R appuser:appuser /app
 USER appuser
 
-# Expose port
+# Expose the port your FastAPI app will run on
 EXPOSE 8080
 
-# Health check
+# Health check (FastAPI endpoint at /health)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8080/health || exit 1
 
-# Run the application
+# Run the bot — your bot.py manually starts uvicorn and Telethon
 CMD ["python", "bot.py"]
