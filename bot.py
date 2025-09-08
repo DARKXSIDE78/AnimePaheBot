@@ -192,6 +192,24 @@ def download_start_pic_if_not_exists(url: str, save_path = THUMBNAIL_DIR / "star
         return str(save_path)
     return download_start_pic(url, save_path)
 
+def download_force_pic(url: str, save_path = THUMBNAIL_DIR / "force_pic.jpg"):
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        with open(save_path, "wb") as f:
+            f.write(response.content)
+        print(f"[INFO] Force pic downloaded and saved as '{save_path}'")
+        return str(save_path)
+    except Exception as e:
+        print(f"[ERROR] Failed to download force pic: {e}")
+        return None
+
+def download_force_pic_if_not_exists(url: str, save_path = THUMBNAIL_DIR / "force_pic.jpg"):
+    if save_path.exists():
+        print(f"[INFO] Force pic already exists at '{save_path}'")
+        return str(save_path)
+    return download_force_pic(url, save_path)
+
 class CodeflixBots:
     def __init__(self):
         self.client = AsyncIOMotorClient(MONGO_URI)
@@ -927,7 +945,7 @@ async def not_joined(client, event):
             try:
                 await client.send_file(
                     event.chat_id,
-                    Config.FORCE_PIC,
+                    force_pic_path,
                     force_document=False,
                     caption=caption_text,
                     parse_mode='html',
@@ -5818,6 +5836,8 @@ async def health_check():
 async def main():
     try:
         start_pic_path = download_start_pic_if_not_exists(START_PIC_URL)
+        force_pic_path = download_force_pic_if_not_exists(FORCE_PIC)
+        
         server = uvicorn.Server(uvicorn.Config(app, host="0.0.0.0", port=PORT, log_level="info"))
         asyncio.create_task(server.serve())
         
