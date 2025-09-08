@@ -619,6 +619,7 @@ class BotSettings:
         self._lock = threading.Lock()
         self.state: Dict[str, Any] = {
             "start_pic": START_PIC_URL,
+            "force_pic": FORCE_PIC,
             "thumbnail": FIXED_THUMBNAIL_URL,
             "dump_channel_id": DUMP_CHANNEL_ID,
             "dump_channel_username": DUMP_CHANNEL_USERNAME,
