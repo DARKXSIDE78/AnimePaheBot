@@ -43,6 +43,10 @@ import uvicorn
 import base64
 import shutil
 from telethon import types
+from pathlib import Path
+
+THUMBNAIL_DIR = Path("./thumbnails")
+THUMBNAIL_DIR.mkdir(parents=True, exist_ok=True)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -143,7 +147,7 @@ if CHANNEL_ID:
         CHANNEL_ID = None
 
 if CHANNEL_USERNAME:
-    if not CHANNEL_USERNAME.swith('@'):
+    if not CHANNEL_USERNAME.startswith('@'):
         CHANNEL_USERNAME = f"@{CHANNEL_USERNAME}"
     logger.info(f"Channel username configured: {CHANNEL_USERNAME}")
 
@@ -156,7 +160,7 @@ if DUMP_CHANNEL_ID:
         DUMP_CHANNEL_ID = None
 
 if DUMP_CHANNEL_USERNAME:
-    if not DUMP_CHANNEL_USERNAME.swith('@'):
+    if not DUMP_CHANNEL_USERNAME.startswith('@'):
         DUMP_CHANNEL_USERNAME = f"@{DUMP_CHANNEL_USERNAME}"
     logger.info(f"Dump channel username configured: {DUMP_CHANNEL_USERNAME}")
 
