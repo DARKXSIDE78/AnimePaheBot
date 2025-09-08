@@ -143,7 +143,7 @@ if CHANNEL_ID:
         CHANNEL_ID = None
 
 if CHANNEL_USERNAME:
-    if not CHANNEL_USERNAME.startswith('@'):
+    if not CHANNEL_USERNAME.startwith('@'):
         CHANNEL_USERNAME = f"@{CHANNEL_USERNAME}"
     logger.info(f"Channel username configured: {CHANNEL_USERNAME}")
 
@@ -156,7 +156,7 @@ if DUMP_CHANNEL_ID:
         DUMP_CHANNEL_ID = None
 
 if DUMP_CHANNEL_USERNAME:
-    if not DUMP_CHANNEL_USERNAME.startswith('@'):
+    if not DUMP_CHANNEL_USERNAME.swith('@'):
         DUMP_CHANNEL_USERNAME = f"@{DUMP_CHANNEL_USERNAME}"
     logger.info(f"Dump channel username configured: {DUMP_CHANNEL_USERNAME}")
 
@@ -167,7 +167,7 @@ if not DUMP_CHANNEL_ID and not DUMP_CHANNEL_USERNAME:
     logger.warning("No dump channel ID or username configured. Files will only be sent to users directly.")
 
 FIXED_THUMBNAIL_URL = "https://i.postimg.cc/DfLv5dJP/photo-2025-08-05-16-48-30.jpg"
-START_PIC_URL = "https://imgs.search.brave.com/9n5_FAipMAH3ic1LtbHx3btylHNWppO2rl4gXnRjr1g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDE4MzM1/NTIuanBn"
+_PIC_URL = "https://imgs.search.brave.com/9n5_FAipMAH3ic1LtbHx3btylHNWppO2rl4gXnRjr1g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDE4MzM1/NTIuanBn"
 STICKER_ID = "CAACAgUAAyEFAASONkiwAAIqzmgkRV65h50_3UdyXQ4r0osj7Cs2AAIfAANDc8kSq8cUT3BtY9A2BA"
 
 class CodeflixBots:
@@ -906,6 +906,7 @@ async def not_joined(client, event):
                 await client.send_file(
                     event.chat_id,
                     Config.FORCE_PIC,
+                    force_document=False,
                     caption=caption_text,
                     parse_mode='html',
                     buttons=buttons
@@ -3977,6 +3978,7 @@ async def start_handler(event):
                         "<blockquote><b>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - <a href='https://t.me/AnimesOngoing'>𝗢𝗻𝗴𝗼𝗶𝗻𝗴 𝗔𝗻𝗶𝗺𝗲- 𝗔𝗿𝗰</a></b></blockquote>"
                     ),
                     parse_mode='HTML',
+                    force_document=False,
                     buttons=[
                         [Button.inline("sᴇᴀʀᴄʜ ᴀɴɪᴍᴇ", b"search_anime"), Button.inline("ʜᴇʟᴘ", b"show_help")],
                         [Button.inline("ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ sᴇᴛᴛɪɴɢs", b"auto_settings")]
@@ -3992,6 +3994,7 @@ async def start_handler(event):
                         "<blockquote><b>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - <a href='https://t.me/AnimesOngoing'>𝗢𝗻𝗴𝗼𝗶𝗻𝗴 𝗔𝗻𝗶𝗺𝗲- 𝗔𝗿𝗰</a></b></blockquote>"
                     ),
                     parse_mode='HTML',
+                    force_document=False,
                     buttons=[
                         [Button.url("Dᴇᴠᴇʟᴏᴘᴇʀ", "https://t.me/DARKXSIDE78"),
                         Button.url("Mᴀɪɴ Cʜᴀɴɴᴇʟ", "https://t.me/ChibiHub")],
