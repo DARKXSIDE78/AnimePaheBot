@@ -143,7 +143,7 @@ if CHANNEL_ID:
         CHANNEL_ID = None
 
 if CHANNEL_USERNAME:
-    if not CHANNEL_USERNAME.startwith('@'):
+    if not CHANNEL_USERNAME.swith('@'):
         CHANNEL_USERNAME = f"@{CHANNEL_USERNAME}"
     logger.info(f"Channel username configured: {CHANNEL_USERNAME}")
 
