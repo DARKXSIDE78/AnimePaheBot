@@ -4005,9 +4005,9 @@ async def start_handler(event):
         except Exception as e:
             logger.error(f"Error sending start message: {e}")
             if is_admin(event.chat_id):
-                await safe_respond(event, f"<b>🍁 Hᴇʏ, {mention}!\nI'ᴍ ᴀ ᴀᴜᴛᴏ ᴀɴɪᴍᴇ ʙᴏᴛ. ɪ ᴄᴀɴ ᴅᴏᴡɴʟᴏᴀᴅ ᴏɴɢᴏɪɴɢ ᴀɴᴅ ғɪɴɪsʜᴇᴅ ᴀɴɪᴍᴇ ғʀᴏᴍ ᴀɴɪᴍᴇᴘᴀʜᴇ.ʀᴜ ᴀɴᴅ ᴜᴘʟᴏᴀᴅ ᴛʜᴏsᴇ ғɪʟᴇs ᴏɴ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴅɪʀᴇᴄᴛʟʏ...\n<blockquote>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - <a href='https://t.me/NineAnimeOfficial'>𝟵𝗫𝗔𝗻𝗶𝗺𝗲 𝗢𝗻𝗴𝗼𝗶𝗻𝗴 - 𝗔𝗿𝗰</a></blockquote></b>", parse_mode='html')
+                await safe_respond(event, f"<b>🍁 Hᴇʏ, {mention}!\nI'ᴍ ᴀ ᴀᴜᴛᴏ ᴀɴɪᴍᴇ ʙᴏᴛ. ɪ ᴄᴀɴ ᴅᴏᴡɴʟᴏᴀᴅ ᴏɴɢᴏɪɴɢ ᴀɴᴅ ғɪɴɪsʜᴇᴅ ᴀɴɪᴍᴇ ғʀᴏᴍ ᴀɴɪᴍᴇᴘᴀʜᴇ.ʀᴜ ᴀɴᴅ ᴜᴘʟᴏᴀᴅ ᴛʜᴏsᴇ ғɪʟᴇs ᴏɴ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴅɪʀᴇᴄᴛʟʏ...\n<blockquote>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - <a href='https://t.me/AnimesOngoing'>𝗢𝗻𝗴𝗼𝗶𝗻𝗴 𝗔𝗻𝗶𝗺𝗲- 𝗔𝗿𝗰</a></blockquote></b>", parse_mode='html')
             else:
-                await safe_respond(event, f"<b>🍁 Hᴇʏ, {mention}!\nI'ᴍ ᴀ ᴀᴜᴛᴏ ᴀɴɪᴍᴇ ʙᴏᴛ. Please contact the developer for support.\n<blockquote>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - <a href='https://t.me/NineAnimeOfficial'>𝟵𝗫𝗔𝗻𝗶𝗺𝗲 𝗢𝗻𝗴𝗼𝗶𝗻𝗴 - 𝗔𝗿𝗰</a></blockquote></b>", parse_mode='html')
+                await safe_respond(event, f"<b>🍁 Hᴇʏ, {mention}!\nI'ᴍ ᴀ ᴀᴜᴛᴏ ᴀɴɪᴍᴇ ʙᴏᴛ. Please contact the developer for support.\n<blockquote>ᴘᴏᴡᴇʀᴇᴅ ʙʏ - <a href='https://t.me/AnimesOngoing'>𝗢𝗻𝗴𝗼𝗶𝗻𝗴 𝗔𝗻𝗶𝗺𝗲- 𝗔𝗿𝗰</a></blockquote></b>", parse_mode='html')
 
 async def delete_message_after(message, seconds):
     await asyncio.sleep(seconds)
